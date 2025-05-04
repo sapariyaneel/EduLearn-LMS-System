@@ -92,7 +92,10 @@ public class SecurityConfig {
             // Add all possible frontend origins
             "http://127.0.0.1:5173",
             "http://127.0.0.1:3000",
-            "http://127.0.0.1:4200"
+            "http://127.0.0.1:4200",
+            // Add production URLs
+            "https://edulearn-lms.netlify.app",
+            "https://www.edulearn-lms.netlify.app"
         )); 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD")); // Allow all methods
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "X-Requested-With", "Cache-Control", "Origin")); // Allow more headers
