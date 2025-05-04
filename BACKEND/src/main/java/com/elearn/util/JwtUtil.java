@@ -5,6 +5,9 @@ import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
 
+import jakarta.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -16,9 +19,16 @@ import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JwtUtil {
-    // Hard-coded secret key - in production this should be in a secure config
-    private final String SECRET_STRING = "eduLearnSecretKey123456789012345678901234567890";
-    private final Key SECRET_KEY = Keys.hmacShaKeyFor(SECRET_STRING.getBytes(StandardCharsets.UTF_8));
+    @Value("${jwt.secret.key}")
+    private String secretString;
+    
+    private Key secretKey;
+    
+    // Initialize the secret key after properties are set
+    @PostConstruct
+    public void init() {
+        this.secretKey = Keys.hmacShaKeyFor(secretString.getBytes(StandardCharsets.UTF_8));
+    }
 
     public String generateToken(String email) {
         System.out.println("Generating token for: " + email);
@@ -29,7 +39,7 @@ public class JwtUtil {
                 .setSubject(email)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
-                .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
+                .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
         
         System.out.println("Token generated successfully, length: " + token.length());
@@ -78,7 +88,7 @@ public class JwtUtil {
     private Claims extractAllClaims(String token) {
         try {
             return Jwts.parserBuilder()
-                    .setSigningKey(SECRET_KEY)
+                    .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token)
                     .getBody();

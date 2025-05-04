@@ -173,20 +173,43 @@ public class ExcelRService {
     private String secret;
 
     public String createOrder(int amount, String currency, String receipt) throws RazorpayException {
-        RazorpayClient razorpay = new RazorpayClient(key, secret);
+        try {
+            System.out.println("Creating Razorpay order with key: " + key + ", amount: " + amount);
+            RazorpayClient razorpay = new RazorpayClient(key, secret);
 
-        JSONObject orderRequest = new JSONObject();
-        orderRequest.put("amount", amount * 100); // Amount in paise
-        orderRequest.put("currency", currency);
-        orderRequest.put("receipt", receipt);
+            JSONObject orderRequest = new JSONObject();
+            orderRequest.put("amount", amount * 100); // Amount in paise
+            orderRequest.put("currency", currency);
+            orderRequest.put("receipt", receipt);
+            System.out.println("Order request JSON: " + orderRequest.toString());
 
-        Order order = razorpay.orders.create(orderRequest);
-        return order.toString();
+            Order order = razorpay.orders.create(orderRequest);
+            String orderJson = order.toString();
+            System.out.println("Order created: " + orderJson);
+            return orderJson;
+        } catch (RazorpayException e) {
+            System.err.println("Razorpay error: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        } catch (Exception e) {
+            System.err.println("Unexpected error creating order: " + e.getMessage());
+            e.printStackTrace();
+            throw new RazorpayException("Failed to create order: " + e.getMessage());
+        }
     }
 
     public boolean verifyPayment(String orderId, String paymentId, String signature) {
-        String generatedSignature = HmacSHA256(orderId + "|" + paymentId, secret);
-        return generatedSignature.equals(signature);
+        try {
+            System.out.println("Verifying payment with orderId: " + orderId + ", paymentId: " + paymentId);
+            String generatedSignature = HmacSHA256(orderId + "|" + paymentId, secret);
+            System.out.println("Generated signature: " + generatedSignature);
+            System.out.println("Received signature: " + signature);
+            return generatedSignature.equals(signature);
+        } catch (Exception e) {
+            System.err.println("Error verifying payment: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private String HmacSHA256(String data, String secret) {

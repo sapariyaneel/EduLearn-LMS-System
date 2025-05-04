@@ -154,29 +154,44 @@ public class ExcelRController {
 	@PostMapping("/create-order")
     public ResponseEntity<?> createOrder(@RequestBody Map<String, Object> data) {
         try {
-            int amount = (int) data.get("amount");
+            System.out.println("Creating order with data: " + data);
+            int amount = Integer.parseInt(data.get("amount").toString());
             String currency = (String) data.get("currency");
             String receipt = (String) data.get("receipt");
 
+            System.out.println("Amount: " + amount + ", Currency: " + currency + ", Receipt: " + receipt);
             String order = excelRService.createOrder(amount, currency, receipt);
+            System.out.println("Order created successfully: " + order);
             return ResponseEntity.ok(order);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Failed to create order");
+            System.err.println("Failed to create order: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to create order: " + e.getMessage());
         }
     }
 	
 	@PostMapping("/verify-payment")
     public ResponseEntity<?> verifyPayment(@RequestBody Map<String, String> data) {
-        String orderId = data.get("razorpay_order_id");
-        String paymentId = data.get("razorpay_payment_id");
-        String signature = data.get("razorpay_signature");
+        try {
+            System.out.println("Verifying payment with data: " + data);
+            String orderId = data.get("razorpay_order_id");
+            String paymentId = data.get("razorpay_payment_id");
+            String signature = data.get("razorpay_signature");
 
-        boolean isValid = excelRService.verifyPayment(orderId, paymentId, signature);
+            boolean isValid = excelRService.verifyPayment(orderId, paymentId, signature);
+            System.out.println("Payment verification result: " + isValid);
 
-        if (isValid) {
-            return ResponseEntity.ok("Payment Verified");
-        } else {
-            return ResponseEntity.badRequest().body("Payment Verification Failed");
+            if (isValid) {
+                return ResponseEntity.ok("Payment Verified");
+            } else {
+                return ResponseEntity.badRequest().body("Payment Verification Failed");
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to verify payment: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to verify payment: " + e.getMessage());
         }
     }
 	
