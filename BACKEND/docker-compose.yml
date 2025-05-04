@@ -7,8 +7,7 @@ services:
       - "9090:9090"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-    env_file:
-      - .env
+      # Environment variables will be set in Render dashboard
     depends_on:
       - db
     networks:

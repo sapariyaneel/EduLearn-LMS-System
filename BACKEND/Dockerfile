@@ -6,6 +6,6 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-COPY .env .
+# Environment variables should be configured in Render dashboard
 EXPOSE 9090
 ENTRYPOINT ["java", "-jar", "app.jar"] 
