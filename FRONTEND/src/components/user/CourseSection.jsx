@@ -15,8 +15,9 @@ const CourseSection = () => {
     try {
       if (showLoading) setLoading(true);
       
-      // Use the courseService from api.js with the corrected URL
-      const response = await axios.get("http://localhost:9090/api/user/courses", {
+      // Use the API_BASE_URL from environment variables instead of hardcoded URL
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://edulearn-api.onrender.com';
+      const response = await axios.get(`${API_BASE_URL}/api/user/courses`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

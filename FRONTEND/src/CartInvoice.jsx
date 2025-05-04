@@ -14,7 +14,9 @@ const CartInvoice = () => {
       const token = localStorage.getItem('token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
       
-      const orderResponse = await axios.post("http://localhost:9090/create-order", {
+      // Use the API_BASE_URL from environment variables
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://edulearn-api.onrender.com';
+      const orderResponse = await axios.post(`${API_BASE_URL}/create-order`, {
         amount: totalCost, // Amount in INR
         currency: "INR",
         receipt: "receipt#1",
@@ -32,7 +34,7 @@ const CartInvoice = () => {
         handler: async (response) => {
           try {
             const verifyResponse = await axios.post(
-              "http://localhost:9090/verify-payment",
+              `${API_BASE_URL}/verify-payment`,
               {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
