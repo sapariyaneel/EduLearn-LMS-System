@@ -1,0 +1,176 @@
+/* Navbar Layout */
+.navbar {
+    padding: 12px 24px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* Right section */
+  .navbar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #007bff;
+  }
+  
+  /* Search bar */
+  .search-bar-container {
+    position: relative;
+    width: 250px;
+  }
+  
+  .search-input {
+    border-radius: 25px;
+    padding: 8px 16px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  
+  .search-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  /* Cart Icon Styling */
+  .cart-icon {
+    background: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cart-icon:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .cart-count {
+    background: #ff3b3f;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+  }
+  
+  .cart-total {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  /* Logout Button */
+  .btn-outline-danger {
+    padding: 6px 16px;
+    border-radius: 25px;
+  }
+  
+  /* Mobile menu */
+  .mobile-menu {
+    background: #f8f9fa;
+    border-top: 1px solid #ddd;
+  }
+  
+  .mobile-no{
+    display: none;
+  }
+
+
+
+  /* Existing styles remain as-is */
+/* Mobile menu adjustments */
+/* Mobile menu adjustments */
+@media (max-width: 768px) {
+  /* Hide the logo and main desktop nav items */
+  .mobile-no {
+    display: none;
+  }
+
+  /* Hide individual things like Home, Search, Cart, Logout */
+  .hide-me {
+    display: none;
+  }
+
+  /* Mobile menu adjustments */
+  .search-bar-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .search-input {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .search-btn {
+    right: 10px;
+    font-size: 1rem;
+  }
+
+  .cart-icon {
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 1rem;
+    gap: 8px;
+  }
+
+  .cart-count {
+    min-width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+
+  .btn-outline-danger {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .mobile-menu {
+    padding: 20px;
+    width: 100%;
+  }
+
+  /* Show hamburger icon */
+  .navbar-toggler {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+  }
+
+  .navbar {
+    position: relative;
+  }
+}

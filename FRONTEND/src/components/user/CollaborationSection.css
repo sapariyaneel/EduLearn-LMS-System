@@ -1,0 +1,52 @@
+.collaboration-section {
+    padding: 40px 20px;
+    /* background: #f8f9fc; */
+    text-align: center;
+  }
+  
+  .collaboration-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  
+  .collaboration-text .highlight {
+    color: #007bff;
+  }
+  
+  .collaboration-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .collaboration-logos img {
+    max-height: 50px;
+    max-width: 120px;
+    object-fit: contain;
+    filter: grayscale(20%);
+    transition: all 0.3s ease;
+  }
+  
+  .collaboration-logos img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+  }
+  
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .collaboration-text {
+      font-size: 1.2rem;
+    }
+  
+    .collaboration-logos {
+      gap: 20px;
+    }
+  
+    .collaboration-logos img {
+      max-height: 40px;
+      max-width: 100px;
+    }
+  }
+  

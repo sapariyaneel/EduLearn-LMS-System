@@ -1,0 +1,13 @@
+/* Landing page specific styles */
+.landing-layout main > section {
+    padding: 4rem 0;
+  }
+  
+  .landing-layout main > section:nth-child(odd) {
+    background: #f8f9fa;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }

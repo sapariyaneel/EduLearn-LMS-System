@@ -1,0 +1,76 @@
+/* Cart Invoice Container */
+.cart-invoice-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Invoice Heading */
+  .cart-invoice-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Table Styles */
+  .cart-invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cart-invoice-table th,
+  .cart-invoice-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 0.8rem;
+  }
+  
+  .cart-invoice-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .cart-invoice-table tfoot td {
+    font-weight: bold;
+  }
+  
+  /* Total Row */
+  .cart-total-label {
+    text-align: right;
+    padding-right: 1rem;
+  }
+  
+  .cart-total-value {
+    font-size: 1.2rem;
+    color: #007bff;
+  }
+  
+  /* Empty Cart Message */
+  .cart-invoice-empty {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  /* Back Button */
+  .back-btn {
+    display: block;
+    margin: 1.5rem auto;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .back-btn:hover {
+    background-color: #218838;
+  }
+  
