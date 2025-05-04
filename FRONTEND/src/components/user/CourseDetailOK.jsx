@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 import CollaborationSection from "./CollaborationSection";
 import InvestInCareer from "./InvestInCareer";
 import Footer from "../marketing/Footer";
-import "./CourseDetailOk.css";
+import "./CourseDetailOK.css";
 import { useCart } from "../../CartContext";
 import CartIcon from "../../CartIcon";
 import { videoService, enrollmentService } from "../../services/api";
